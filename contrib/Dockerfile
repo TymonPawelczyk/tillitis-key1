@@ -85,3 +85,10 @@ RUN rm -rf /src
 
 FROM base
 COPY --from=builder /usr/local/ /usr/local
+
+RUN useradd -ms /bin/bash dev
+RUN usermod -a -G dialout dev
+USER dev
+WORKDIR /home/dev
+
+CMD /usr/bin/bash
