@@ -280,20 +280,22 @@ module application_fpga(
                );
 
 
-  uart uart_inst(
-                 .clk(clk),
-                 .reset_n(reset_n),
+  spi spi_inst(
+               .clk(clk),
+               .reset_n(reset_n),
 
-                 .rxd(interface_tx),
-                 .txd(interface_rx),
+	       .SPI_SCK(app_gpio1),
+	       .SPI_SS(app_gpio2),
+               .SPI_MOSI(interface_tx),
+               .SPI_MISO(interface_rx),
 
-                 .cs(uart_cs),
-                 .we(uart_we),
-                 .address(uart_address),
-                 .write_data(uart_write_data),
-                 .read_data(uart_read_data),
-                 .ready(uart_ready)
-                 );
+               .cs(uart_cs),
+               .we(uart_we),
+               .address(uart_address),
+               .write_data(uart_write_data),
+               .read_data(uart_read_data),
+               .ready(uart_ready)
+              );
 
 
   touch_sense touch_sense_inst(
@@ -320,8 +322,8 @@ module application_fpga(
                  .led_g(led_g),
                  .led_b(led_b),
 
-                 .gpio1(app_gpio1),
-                 .gpio2(app_gpio2),
+                 .gpio1(),
+                 .gpio2(),
                  .gpio3(app_gpio3),
                  .gpio4(app_gpio4),
 
